@@ -1,0 +1,51 @@
+﻿@model Letgo.Models.tblkullanıcı
+@{
+    ViewBag.Title = "profilGor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 mt-5" style="border-right: 1px solid #ccc;">
+            <p><b>Ad:</b> @Model.kullanıcıAdSoyad</p>
+            
+            <p><b>Mail:</b> @Model.email</p>
+            <div class="talep">
+                <p><b>@Model.kullanıcıAdSoyad</b></p>
+                <hr />
+                
+                <form action="@Url.Action("favoriListele","Urun",new { @kullaniciID=Session["kullaniciId"]})" method="post">
+                <button class="btn btn-light">Favorileri Listele</button> 
+                </form>   
+            </div>
+
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <h2>Ürünleri</h2>
+            </div>
+            @foreach (var urun in Model.tblurun)
+            {
+            <div class="row">
+                <div class="col-md-4 col-xs-12 col-lg-3 img-thumbnail urunler text-center">
+                    <form action="@Url.Action("urunGetir","Urun",new {@urunId=urun.urunID})" method="post">
+                        <div class="col-md-12">
+                            <img src="~/Content/images/@urun.urunfotograf" height="285px;" width="245px;">
+                        </div>
+                        <div class="col-md-12">
+                            <span class="card-subtitle">@urun.urunAcıklama</span>
+                        </div>
+                        <button class="btn-group btn">Ürünü İncele</button>
+                    </form>
+
+                </div>
+            </div>
+            
+            }
+
+        </div>
+
+    </div>
+
+</div>
+

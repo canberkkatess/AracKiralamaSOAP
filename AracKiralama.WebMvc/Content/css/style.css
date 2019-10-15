@@ -1,0 +1,88 @@
+#navpic {
+    width: 80px;
+    height: 50px;
+    padding: 0;
+}
+#drp {
+    float:right;
+}
+#loginlogo{
+    margin-top:50px;
+    margin-bottom: 50px;
+}
+#leftside{
+    font-family:fantasy;
+    color:whitesmoke;
+    background-color: coral;
+    font-size: 27px;
+}
+#leftside h1{
+    margin-top: 150px;
+}
+#searchbar{
+    width: auto;
+}
+.navbut{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.icon{
+    color:lightcoral;
+    width: 10px;
+    height: 10px;
+}
+.pic{
+    border:none;
+    border-radius: 90px;
+    width: 35px;
+    height: 35px;
+}
+.picpic{
+    border:none;
+    border-radius: 90px;
+    width: 35px;
+    height: 35px;
+}
+#main-footer{
+    background-color: lightcoral;
+}
+#main-footer p{
+    color:white;
+    
+}
+.urunicon{
+    font-size: 35px;
+    color:lightcoral !important;
+}
+.pic_urun {
+    border: none;
+    width: 300px;
+    height: auto;
+    transition: width 1s, height 2s;
+}
+
+    .pic_urun:hover {
+        width: 350px;
+        height: auto;
+    }
+
+#user_icon {
+    margin-top: 30px;
+}
+
+.sc-kullanici_adi {
+    margin-top: 20px;
+}
+
+#fiyat_text {
+    margin-top: 10px;
+}
+
+.benzer_urunler {
+    margin-top: 60px;
+    margin-bottom: 50px;
+}
+
+.benzer_urun {
+    border-style: inherit;
+}

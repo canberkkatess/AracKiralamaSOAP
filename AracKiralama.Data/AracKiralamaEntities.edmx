@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SOAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblArac">
+          <Key>
+            <PropertyRef Name="aracID" />
+          </Key>
+          <Property Name="aracID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aracMarka" Type="nvarchar" MaxLength="50" />
+          <Property Name="aracModel" Type="nvarchar" MaxLength="50" />
+          <Property Name="minEhliyetYasi" Type="int" />
+          <Property Name="minSürücüYasi" Type="int" />
+          <Property Name="günlükKmSiniri" Type="int" />
+          <Property Name="aracKmsi" Type="int" />
+          <Property Name="günlükKiralamaFiyati" Type="int" />
+          <Property Name="koltukSayisi" Type="int" />
+          <Property Name="yakitTürü" Type="int" />
+          <Property Name="aracFotograf" Type="nvarchar" MaxLength="300" />
+          <Property Name="aracAciklama" Type="nvarchar" MaxLength="250" />
+          <Property Name="kiralamaDurumu" Type="int" />
+          <Property Name="airbagDurumu" Type="nvarchar" MaxLength="50" />
+          <Property Name="sirketID" Type="int" />
+          <Property Name="aracKasaTipi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblKiralama">
+          <Key>
+            <PropertyRef Name="kiralamaID" />
+          </Key>
+          <Property Name="kiralamaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aracID" Type="int" />
+          <Property Name="müsteriID" Type="int" />
+          <Property Name="alistarihi" Type="date" />
+          <Property Name="verisTarihi" Type="date" />
+          <Property Name="verilisKmsi" Type="int" />
+          <Property Name="toplamUcret" Type="int" />
+          <Property Name="aracGeldiMi" Type="int" />
+          <Property Name="sirketId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblMüsteri">
+          <Key>
+            <PropertyRef Name="müsteriID" />
+          </Key>
+          <Property Name="müsteriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="müsteriAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="müsteriSoyadi" Type="nvarchar" MaxLength="50" />
+          <Property Name="müsteriEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="müsteriPassword" Type="nvarchar" MaxLength="250" />
+          <Property Name="müsteriYasi" Type="int" />
+          <Property Name="müsteriEhliyetTarihi" Type="date" />
+          <Property Name="müsteriSehir" Type="nvarchar" MaxLength="50" />
+          <Property Name="müsteriAdres" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tblPuan">
+          <Key>
+            <PropertyRef Name="puanID" />
+          </Key>
+          <Property Name="puanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="müsteriID" Type="int" />
+          <Property Name="sirketID" Type="int" />
+          <Property Name="puan" Type="int" />
+        </EntityType>
+        <EntityType Name="tblSirket">
+          <Key>
+            <PropertyRef Name="sirketID" />
+          </Key>
+          <Property Name="sirketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sirketAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="sirketEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="sirketPassword" Type="nvarchar" MaxLength="250" />
+          <Property Name="sirketSehir" Type="nvarchar" MaxLength="50" />
+          <Property Name="sirketAdres" Type="nvarchar" MaxLength="250" />
+          <Property Name="aracSayisi" Type="int" />
+          <Property Name="sirketPuan" Type="int" />
+        </EntityType>
+        <EntityType Name="tblTalep">
+          <Key>
+            <PropertyRef Name="talepID" />
+          </Key>
+          <Property Name="talepID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aracID" Type="int" />
+          <Property Name="müsteriID" Type="int" />
+          <Property Name="alisTarihi" Type="date" />
+          <Property Name="verisTarihi" Type="date" />
+          <Property Name="onayDurumu" Type="int" />
+          <Property Name="sirketId" Type="int" />
+        </EntityType>
+        <Association Name="FK_tblArac_tblArac">
+          <End Role="tblSirket" Type="Self.tblSirket" Multiplicity="0..1" />
+          <End Role="tblArac" Type="Self.tblArac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSirket">
+              <PropertyRef Name="sirketID" />
+            </Principal>
+            <Dependent Role="tblArac">
+              <PropertyRef Name="sirketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKiralama_tblArac">
+          <End Role="tblArac" Type="Self.tblArac" Multiplicity="0..1" />
+          <End Role="tblKiralama" Type="Self.tblKiralama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblArac">
+              <PropertyRef Name="aracID" />
+            </Principal>
+            <Dependent Role="tblKiralama">
+              <PropertyRef Name="aracID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKiralama_tblMüsteri">
+          <End Role="tblMüsteri" Type="Self.tblMüsteri" Multiplicity="0..1" />
+          <End Role="tblKiralama" Type="Self.tblKiralama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMüsteri">
+              <PropertyRef Name="müsteriID" />
+            </Principal>
+            <Dependent Role="tblKiralama">
+              <PropertyRef Name="müsteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKiralama_tblSirket">
+          <End Role="tblSirket" Type="Self.tblSirket" Multiplicity="0..1" />
+          <End Role="tblKiralama" Type="Self.tblKiralama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSirket">
+              <PropertyRef Name="sirketID" />
+            </Principal>
+            <Dependent Role="tblKiralama">
+              <PropertyRef Name="sirketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTalep_tblArac">
+          <End Role="tblArac" Type="Self.tblArac" Multiplicity="0..1" />
+          <End Role="tblTalep" Type="Self.tblTalep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblArac">
+              <PropertyRef Name="aracID" />
+            </Principal>
+            <Dependent Role="tblTalep">
+              <PropertyRef Name="aracID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTalep_tblMüsteri">
+          <End Role="tblMüsteri" Type="Self.tblMüsteri" Multiplicity="0..1" />
+          <End Role="tblTalep" Type="Self.tblTalep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMüsteri">
+              <PropertyRef Name="müsteriID" />
+            </Principal>
+            <Dependent Role="tblTalep">
+              <PropertyRef Name="müsteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTalep_tblSirket">
+          <End Role="tblSirket" Type="Self.tblSirket" Multiplicity="0..1" />
+          <End Role="tblTalep" Type="Self.tblTalep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSirket">
+              <PropertyRef Name="sirketID" />
+            </Principal>
+            <Dependent Role="tblTalep">
+              <PropertyRef Name="sirketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SOAModelStoreContainer">
+          <EntitySet Name="tblArac" EntityType="Self.tblArac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblKiralama" EntityType="Self.tblKiralama" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMüsteri" EntityType="Self.tblMüsteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPuan" EntityType="Self.tblPuan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSirket" EntityType="Self.tblSirket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTalep" EntityType="Self.tblTalep" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblArac_tblArac" Association="Self.FK_tblArac_tblArac">
+            <End Role="tblSirket" EntitySet="tblSirket" />
+            <End Role="tblArac" EntitySet="tblArac" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKiralama_tblArac" Association="Self.FK_tblKiralama_tblArac">
+            <End Role="tblArac" EntitySet="tblArac" />
+            <End Role="tblKiralama" EntitySet="tblKiralama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKiralama_tblMüsteri" Association="Self.FK_tblKiralama_tblMüsteri">
+            <End Role="tblMüsteri" EntitySet="tblMüsteri" />
+            <End Role="tblKiralama" EntitySet="tblKiralama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKiralama_tblSirket" Association="Self.FK_tblKiralama_tblSirket">
+            <End Role="tblSirket" EntitySet="tblSirket" />
+            <End Role="tblKiralama" EntitySet="tblKiralama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTalep_tblArac" Association="Self.FK_tblTalep_tblArac">
+            <End Role="tblArac" EntitySet="tblArac" />
+            <End Role="tblTalep" EntitySet="tblTalep" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTalep_tblMüsteri" Association="Self.FK_tblTalep_tblMüsteri">
+            <End Role="tblMüsteri" EntitySet="tblMüsteri" />
+            <End Role="tblTalep" EntitySet="tblTalep" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTalep_tblSirket" Association="Self.FK_tblTalep_tblSirket">
+            <End Role="tblSirket" EntitySet="tblSirket" />
+            <End Role="tblTalep" EntitySet="tblTalep" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SOAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblArac">
+          <Key>
+            <PropertyRef Name="aracID" />
+          </Key>
+          <Property Name="aracID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aracMarka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="aracModel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="minEhliyetYasi" Type="Int32" />
+          <Property Name="minSürücüYasi" Type="Int32" />
+          <Property Name="günlükKmSiniri" Type="Int32" />
+          <Property Name="aracKmsi" Type="Int32" />
+          <Property Name="günlükKiralamaFiyati" Type="Int32" />
+          <Property Name="koltukSayisi" Type="Int32" />
+          <Property Name="yakitTürü" Type="Int32" />
+          <Property Name="aracFotograf" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="aracAciklama" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="kiralamaDurumu" Type="Int32" />
+          <Property Name="airbagDurumu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sirketID" Type="Int32" />
+          <Property Name="aracKasaTipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblSirket" Relationship="Self.FK_tblArac_tblArac" FromRole="tblArac" ToRole="tblSirket" />
+          <NavigationProperty Name="tblKiralama" Relationship="Self.FK_tblKiralama_tblArac" FromRole="tblArac" ToRole="tblKiralama" />
+          <NavigationProperty Name="tblTalep" Relationship="Self.FK_tblTalep_tblArac" FromRole="tblArac" ToRole="tblTalep" />
+        </EntityType>
+        <EntityType Name="tblKiralama">
+          <Key>
+            <PropertyRef Name="kiralamaID" />
+          </Key>
+          <Property Name="kiralamaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aracID" Type="Int32" />
+          <Property Name="müsteriID" Type="Int32" />
+          <Property Name="alistarihi" Type="DateTime" Precision="0" />
+          <Property Name="verisTarihi" Type="DateTime" Precision="0" />
+          <Property Name="verilisKmsi" Type="Int32" />
+          <Property Name="toplamUcret" Type="Int32" />
+          <Property Name="aracGeldiMi" Type="Int32" />
+          <NavigationProperty Name="tblArac" Relationship="Self.FK_tblKiralama_tblArac" FromRole="tblKiralama" ToRole="tblArac" />
+          <NavigationProperty Name="tblMüsteri" Relationship="Self.FK_tblKiralama_tblMüsteri" FromRole="tblKiralama" ToRole="tblMüsteri" />
+          <Property Name="sirketId" Type="Int32" />
+          <NavigationProperty Name="tblSirket" Relationship="SOAModel.FK_tblKiralama_tblSirket" FromRole="tblKiralama" ToRole="tblSirket" />
+        </EntityType>
+        <EntityType Name="tblMüsteri">
+          <Key>
+            <PropertyRef Name="müsteriID" />
+          </Key>
+          <Property Name="müsteriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="müsteriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="müsteriSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="müsteriEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="müsteriPassword" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="müsteriYasi" Type="Int32" />
+          <Property Name="müsteriEhliyetTarihi" Type="DateTime" Precision="0" />
+          <Property Name="müsteriSehir" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="müsteriAdres" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblKiralama" Relationship="Self.FK_tblKiralama_tblMüsteri" FromRole="tblMüsteri" ToRole="tblKiralama" />
+          <NavigationProperty Name="tblTalep" Relationship="Self.FK_tblTalep_tblMüsteri" FromRole="tblMüsteri" ToRole="tblTalep" />
+        </EntityType>
+        <EntityType Name="tblPuan">
+          <Key>
+            <PropertyRef Name="puanID" />
+          </Key>
+          <Property Name="puanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="müsteriID" Type="Int32" />
+          <Property Name="sirketID" Type="Int32" />
+          <Property Name="puan" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblSirket">
+          <Key>
+            <PropertyRef Name="sirketID" />
+          </Key>
+          <Property Name="sirketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sirketAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sirketEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sirketPassword" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="sirketSehir" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sirketAdres" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="aracSayisi" Type="Int32" />
+          <Property Name="sirketPuan" Type="Int32" />
+          <NavigationProperty Name="tblArac" Relationship="Self.FK_tblArac_tblArac" FromRole="tblSirket" ToRole="tblArac" />
+          <NavigationProperty Name="tblKiralama" Relationship="SOAModel.FK_tblKiralama_tblSirket" FromRole="tblSirket" ToRole="tblKiralama" />
+          <NavigationProperty Name="tblTalep" Relationship="SOAModel.FK_tblTalep_tblSirket" FromRole="tblSirket" ToRole="tblTalep" />
+        </EntityType>
+        <EntityType Name="tblTalep">
+          <Key>
+            <PropertyRef Name="talepID" />
+          </Key>
+          <Property Name="talepID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aracID" Type="Int32" />
+          <Property Name="müsteriID" Type="Int32" />
+          <Property Name="alisTarihi" Type="DateTime" Precision="0" />
+          <Property Name="verisTarihi" Type="DateTime" Precision="0" />
+          <Property Name="onayDurumu" Type="Int32" />
+          <NavigationProperty Name="tblArac" Relationship="Self.FK_tblTalep_tblArac" FromRole="tblTalep" ToRole="tblArac" />
+          <NavigationProperty Name="tblMüsteri" Relationship="Self.FK_tblTalep_tblMüsteri" FromRole="tblTalep" ToRole="tblMüsteri" />
+          <Property Name="sirketId" Type="Int32" />
+          <NavigationProperty Name="tblSirket" Relationship="SOAModel.FK_tblTalep_tblSirket" FromRole="tblTalep" ToRole="tblSirket" />
+        </EntityType>
+        <Association Name="FK_tblArac_tblArac">
+          <End Role="tblSirket" Type="Self.tblSirket" Multiplicity="0..1" />
+          <End Role="tblArac" Type="Self.tblArac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSirket">
+              <PropertyRef Name="sirketID" />
+            </Principal>
+            <Dependent Role="tblArac">
+              <PropertyRef Name="sirketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKiralama_tblArac">
+          <End Role="tblArac" Type="Self.tblArac" Multiplicity="0..1" />
+          <End Role="tblKiralama" Type="Self.tblKiralama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblArac">
+              <PropertyRef Name="aracID" />
+            </Principal>
+            <Dependent Role="tblKiralama">
+              <PropertyRef Name="aracID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTalep_tblArac">
+          <End Role="tblArac" Type="Self.tblArac" Multiplicity="0..1" />
+          <End Role="tblTalep" Type="Self.tblTalep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblArac">
+              <PropertyRef Name="aracID" />
+            </Principal>
+            <Dependent Role="tblTalep">
+              <PropertyRef Name="aracID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKiralama_tblMüsteri">
+          <End Role="tblMüsteri" Type="Self.tblMüsteri" Multiplicity="0..1" />
+          <End Role="tblKiralama" Type="Self.tblKiralama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMüsteri">
+              <PropertyRef Name="müsteriID" />
+            </Principal>
+            <Dependent Role="tblKiralama">
+              <PropertyRef Name="müsteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTalep_tblMüsteri">
+          <End Role="tblMüsteri" Type="Self.tblMüsteri" Multiplicity="0..1" />
+          <End Role="tblTalep" Type="Self.tblTalep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMüsteri">
+              <PropertyRef Name="müsteriID" />
+            </Principal>
+            <Dependent Role="tblTalep">
+              <PropertyRef Name="müsteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SOAEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblArac" EntityType="Self.tblArac" />
+          <EntitySet Name="tblKiralama" EntityType="Self.tblKiralama" />
+          <EntitySet Name="tblMüsteri" EntityType="Self.tblMüsteri" />
+          <EntitySet Name="tblPuan" EntityType="Self.tblPuan" />
+          <EntitySet Name="tblSirket" EntityType="Self.tblSirket" />
+          <EntitySet Name="tblTalep" EntityType="Self.tblTalep" />
+          <AssociationSet Name="FK_tblArac_tblArac" Association="Self.FK_tblArac_tblArac">
+            <End Role="tblSirket" EntitySet="tblSirket" />
+            <End Role="tblArac" EntitySet="tblArac" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKiralama_tblArac" Association="Self.FK_tblKiralama_tblArac">
+            <End Role="tblArac" EntitySet="tblArac" />
+            <End Role="tblKiralama" EntitySet="tblKiralama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTalep_tblArac" Association="Self.FK_tblTalep_tblArac">
+            <End Role="tblArac" EntitySet="tblArac" />
+            <End Role="tblTalep" EntitySet="tblTalep" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKiralama_tblMüsteri" Association="Self.FK_tblKiralama_tblMüsteri">
+            <End Role="tblMüsteri" EntitySet="tblMüsteri" />
+            <End Role="tblKiralama" EntitySet="tblKiralama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTalep_tblMüsteri" Association="Self.FK_tblTalep_tblMüsteri">
+            <End Role="tblMüsteri" EntitySet="tblMüsteri" />
+            <End Role="tblTalep" EntitySet="tblTalep" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKiralama_tblSirket" Association="SOAModel.FK_tblKiralama_tblSirket">
+            <End Role="tblSirket" EntitySet="tblSirket" />
+            <End Role="tblKiralama" EntitySet="tblKiralama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTalep_tblSirket" Association="SOAModel.FK_tblTalep_tblSirket">
+            <End Role="tblSirket" EntitySet="tblSirket" />
+            <End Role="tblTalep" EntitySet="tblTalep" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_tblKiralama_tblSirket">
+          <End Type="SOAModel.tblSirket" Role="tblSirket" Multiplicity="0..1" />
+          <End Type="SOAModel.tblKiralama" Role="tblKiralama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSirket">
+              <PropertyRef Name="sirketID" />
+            </Principal>
+            <Dependent Role="tblKiralama">
+              <PropertyRef Name="sirketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTalep_tblSirket">
+          <End Type="SOAModel.tblSirket" Role="tblSirket" Multiplicity="0..1" />
+          <End Type="SOAModel.tblTalep" Role="tblTalep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSirket">
+              <PropertyRef Name="sirketID" />
+            </Principal>
+            <Dependent Role="tblTalep">
+              <PropertyRef Name="sirketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SOAModelStoreContainer" CdmEntityContainer="SOAEntities1">
+          <EntitySetMapping Name="tblArac">
+            <EntityTypeMapping TypeName="SOAModel.tblArac">
+              <MappingFragment StoreEntitySet="tblArac">
+                <ScalarProperty Name="aracID" ColumnName="aracID" />
+                <ScalarProperty Name="aracMarka" ColumnName="aracMarka" />
+                <ScalarProperty Name="aracModel" ColumnName="aracModel" />
+                <ScalarProperty Name="minEhliyetYasi" ColumnName="minEhliyetYasi" />
+                <ScalarProperty Name="minSürücüYasi" ColumnName="minSürücüYasi" />
+                <ScalarProperty Name="günlükKmSiniri" ColumnName="günlükKmSiniri" />
+                <ScalarProperty Name="aracKmsi" ColumnName="aracKmsi" />
+                <ScalarProperty Name="günlükKiralamaFiyati" ColumnName="günlükKiralamaFiyati" />
+                <ScalarProperty Name="koltukSayisi" ColumnName="koltukSayisi" />
+                <ScalarProperty Name="yakitTürü" ColumnName="yakitTürü" />
+                <ScalarProperty Name="aracFotograf" ColumnName="aracFotograf" />
+                <ScalarProperty Name="aracAciklama" ColumnName="aracAciklama" />
+                <ScalarProperty Name="kiralamaDurumu" ColumnName="kiralamaDurumu" />
+                <ScalarProperty Name="airbagDurumu" ColumnName="airbagDurumu" />
+                <ScalarProperty Name="sirketID" ColumnName="sirketID" />
+                <ScalarProperty Name="aracKasaTipi" ColumnName="aracKasaTipi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblKiralama">
+            <EntityTypeMapping TypeName="SOAModel.tblKiralama">
+              <MappingFragment StoreEntitySet="tblKiralama">
+                <ScalarProperty Name="sirketId" ColumnName="sirketId" />
+                <ScalarProperty Name="kiralamaID" ColumnName="kiralamaID" />
+                <ScalarProperty Name="aracID" ColumnName="aracID" />
+                <ScalarProperty Name="müsteriID" ColumnName="müsteriID" />
+                <ScalarProperty Name="alistarihi" ColumnName="alistarihi" />
+                <ScalarProperty Name="verisTarihi" ColumnName="verisTarihi" />
+                <ScalarProperty Name="verilisKmsi" ColumnName="verilisKmsi" />
+                <ScalarProperty Name="toplamUcret" ColumnName="toplamUcret" />
+                <ScalarProperty Name="aracGeldiMi" ColumnName="aracGeldiMi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMüsteri">
+            <EntityTypeMapping TypeName="SOAModel.tblMüsteri">
+              <MappingFragment StoreEntitySet="tblMüsteri">
+                <ScalarProperty Name="müsteriID" ColumnName="müsteriID" />
+                <ScalarProperty Name="müsteriAdi" ColumnName="müsteriAdi" />
+                <ScalarProperty Name="müsteriSoyadi" ColumnName="müsteriSoyadi" />
+                <ScalarProperty Name="müsteriEmail" ColumnName="müsteriEmail" />
+                <ScalarProperty Name="müsteriPassword" ColumnName="müsteriPassword" />
+                <ScalarProperty Name="müsteriYasi" ColumnName="müsteriYasi" />
+                <ScalarProperty Name="müsteriEhliyetTarihi" ColumnName="müsteriEhliyetTarihi" />
+                <ScalarProperty Name="müsteriSehir" ColumnName="müsteriSehir" />
+                <ScalarProperty Name="müsteriAdres" ColumnName="müsteriAdres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPuan">
+            <EntityTypeMapping TypeName="SOAModel.tblPuan">
+              <MappingFragment StoreEntitySet="tblPuan">
+                <ScalarProperty Name="puanID" ColumnName="puanID" />
+                <ScalarProperty Name="müsteriID" ColumnName="müsteriID" />
+                <ScalarProperty Name="sirketID" ColumnName="sirketID" />
+                <ScalarProperty Name="puan" ColumnName="puan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSirket">
+            <EntityTypeMapping TypeName="SOAModel.tblSirket">
+              <MappingFragment StoreEntitySet="tblSirket">
+                <ScalarProperty Name="sirketID" ColumnName="sirketID" />
+                <ScalarProperty Name="sirketAdi" ColumnName="sirketAdi" />
+                <ScalarProperty Name="sirketEmail" ColumnName="sirketEmail" />
+                <ScalarProperty Name="sirketPassword" ColumnName="sirketPassword" />
+                <ScalarProperty Name="sirketSehir" ColumnName="sirketSehir" />
+                <ScalarProperty Name="sirketAdres" ColumnName="sirketAdres" />
+                <ScalarProperty Name="aracSayisi" ColumnName="aracSayisi" />
+                <ScalarProperty Name="sirketPuan" ColumnName="sirketPuan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTalep">
+            <EntityTypeMapping TypeName="SOAModel.tblTalep">
+              <MappingFragment StoreEntitySet="tblTalep">
+                <ScalarProperty Name="sirketId" ColumnName="sirketId" />
+                <ScalarProperty Name="talepID" ColumnName="talepID" />
+                <ScalarProperty Name="aracID" ColumnName="aracID" />
+                <ScalarProperty Name="müsteriID" ColumnName="müsteriID" />
+                <ScalarProperty Name="alisTarihi" ColumnName="alisTarihi" />
+                <ScalarProperty Name="verisTarihi" ColumnName="verisTarihi" />
+                <ScalarProperty Name="onayDurumu" ColumnName="onayDurumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

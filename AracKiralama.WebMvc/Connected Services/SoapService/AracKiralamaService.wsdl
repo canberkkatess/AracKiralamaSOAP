@@ -1,0 +1,1544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MusteriEkle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="a" type="tns:tblMüsteri" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="tblMüsteri">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="müsteriID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="müsteriAdi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="müsteriSoyadi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="müsteriEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="müsteriPassword" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="müsteriYasi" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="müsteriEhliyetTarihi" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="müsteriSehir" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="müsteriAdres" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tblKiralama" type="tns:ArrayOfTblKiralama" />
+          <s:element minOccurs="0" maxOccurs="1" name="tblPuan" type="tns:ArrayOfTblPuan" />
+          <s:element minOccurs="0" maxOccurs="1" name="tblTalep" type="tns:ArrayOfTblTalep" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTblKiralama">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="tblKiralama" nillable="true" type="tns:tblKiralama" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="tblKiralama">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="kiralamaID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="aracID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="müsteriID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="alistarihi" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="verisTarihi" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="verilisKmsi" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="toplamUcret" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="aracGeldiMi" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="tblArac" type="tns:tblArac" />
+          <s:element minOccurs="0" maxOccurs="1" name="tblMüsteri" type="tns:tblMüsteri" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="tblArac">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="aracID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="aracMarka" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aracModel" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="minEhliyetYasi" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="minSürücüYasi" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="günlükKmSiniri" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="aracKmsi" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="günlükKiralamaFiyati" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="koltukSayisi" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="yakitTürü" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aracFotograf" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aracAciklama" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="kiralamaDurumu" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="airbagDurumu" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="sirketID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="aracKasaTipi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tblSirket" type="tns:tblSirket" />
+          <s:element minOccurs="0" maxOccurs="1" name="tblKiralama" type="tns:ArrayOfTblKiralama" />
+          <s:element minOccurs="0" maxOccurs="1" name="tblTalep" type="tns:ArrayOfTblTalep" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="tblSirket">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="sirketID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sirketAdi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sirketEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sirketPassword" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sirketSehir" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sirketAdres" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="aracSayisi" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="sirketPuan" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="tblArac" type="tns:ArrayOfTblArac" />
+          <s:element minOccurs="0" maxOccurs="1" name="tblPuan" type="tns:ArrayOfTblPuan" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTblArac">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="tblArac" nillable="true" type="tns:tblArac" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTblPuan">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="tblPuan" nillable="true" type="tns:tblPuan" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="tblPuan">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="puanID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="müsteriID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="sirketID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="puan" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="tblMüsteri" type="tns:tblMüsteri" />
+          <s:element minOccurs="0" maxOccurs="1" name="tblSirket" type="tns:tblSirket" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTblTalep">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="tblTalep" nillable="true" type="tns:tblTalep" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="tblTalep">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="talepID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="aracID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="müsteriID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="alisTarihi" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="verisTarihi" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="onayDurumu" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="tblArac" type="tns:tblArac" />
+          <s:element minOccurs="0" maxOccurs="1" name="tblMüsteri" type="tns:tblMüsteri" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MusteriEkleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MusteriEkleResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="musteriLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kullaniciAdi" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pw" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="musteriLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="musteriLoginResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="musteriDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="m" type="tns:tblMüsteri" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="musteriDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="musteriDeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="musteriGetAll">
+        <s:complexType />
+      </s:element>
+      <s:element name="musteriGetAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="musteriGetAllResult" type="tns:ArrayOfTblMüsteri" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTblMüsteri">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="tblMüsteri" nillable="true" type="tns:tblMüsteri" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="musteriGetById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="musteriGetByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="musteriGetByIdResult" type="tns:tblMüsteri" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="musteriUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="m" type="tns:tblMüsteri" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="musteriUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="musteriUpdateResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SirketEkle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="s" type="tns:tblSirket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SirketEkleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SirketEkleResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sirketlogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kullaniciAdi" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pw" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sirketloginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sirketloginResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sirketDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="s" type="tns:tblSirket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sirketDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sirketDeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sirketGetAll">
+        <s:complexType />
+      </s:element>
+      <s:element name="sirketGetAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sirketGetAllResult" type="tns:ArrayOfTblSirket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTblSirket">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="tblSirket" nillable="true" type="tns:tblSirket" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="sirketGetById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sirketGetByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sirketGetByIdResult" type="tns:tblSirket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sirketUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="s" type="tns:tblSirket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sirketUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sirketUpdateResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sirketIdAracGetir">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sirketId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sirketIdAracGetirResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sirketIdAracGetirResult" type="tns:ArrayOfTblArac" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AracEkle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="a" type="tns:tblArac" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AracEkleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AracEkleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AracDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="a" type="tns:tblArac" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AracDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AracDeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="aracGetAll">
+        <s:complexType />
+      </s:element>
+      <s:element name="aracGetAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aracGetAllResult" type="tns:ArrayOfTblArac" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="aracGetById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="aracGetByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aracGetByIdResult" type="tns:tblArac" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="aracUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="a" type="tns:tblArac" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="aracUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="aracUpdateResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KiralamaEkle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="k" type="tns:tblKiralama" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KiralamaEkleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KiralamaEkleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="kiralamaDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="k" type="tns:tblKiralama" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="kiralamaDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="kiralamaDeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="kiralamaGetAll">
+        <s:complexType />
+      </s:element>
+      <s:element name="kiralamaGetAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kiralamaGetAllResult" type="tns:ArrayOfTblKiralama" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="kiralamaGetById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="kiralamaGetByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kiralamaGetByIdResult" type="tns:tblKiralama" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="kiralamaUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="k" type="tns:tblKiralama" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="kiralamaUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="kiralamaUpdateResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="puanEkle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="p" type="tns:tblPuan" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="puanEkleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="puanEkleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="puanDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="p" type="tns:tblPuan" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="puanDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="puanDeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="puanGetAll">
+        <s:complexType />
+      </s:element>
+      <s:element name="puanGetAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="puanGetAllResult" type="tns:ArrayOfTblPuan" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="puanGetById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="puanGetByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="puanGetByIdResult" type="tns:tblPuan" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="puanUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="p" type="tns:tblPuan" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="puanUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="puanUpdateResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="talepEkle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="t" type="tns:tblTalep" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="talepEkleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="talepEkleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="talepDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="t" type="tns:tblTalep" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="talepDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="talepDeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="talepGetAll">
+        <s:complexType />
+      </s:element>
+      <s:element name="talepGetAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="talepGetAllResult" type="tns:ArrayOfTblTalep" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="talepGetById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="talepGetByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="talepGetByIdResult" type="tns:tblTalep" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="talepUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="t" type="tns:tblTalep" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="talepUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="talepUpdateResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="MusteriEkleSoapIn">
+    <wsdl:part name="parameters" element="tns:MusteriEkle" />
+  </wsdl:message>
+  <wsdl:message name="MusteriEkleSoapOut">
+    <wsdl:part name="parameters" element="tns:MusteriEkleResponse" />
+  </wsdl:message>
+  <wsdl:message name="musteriLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:musteriLogin" />
+  </wsdl:message>
+  <wsdl:message name="musteriLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:musteriLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="musteriDeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:musteriDelete" />
+  </wsdl:message>
+  <wsdl:message name="musteriDeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:musteriDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="musteriGetAllSoapIn">
+    <wsdl:part name="parameters" element="tns:musteriGetAll" />
+  </wsdl:message>
+  <wsdl:message name="musteriGetAllSoapOut">
+    <wsdl:part name="parameters" element="tns:musteriGetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="musteriGetByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:musteriGetById" />
+  </wsdl:message>
+  <wsdl:message name="musteriGetByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:musteriGetByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="musteriUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:musteriUpdate" />
+  </wsdl:message>
+  <wsdl:message name="musteriUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:musteriUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="SirketEkleSoapIn">
+    <wsdl:part name="parameters" element="tns:SirketEkle" />
+  </wsdl:message>
+  <wsdl:message name="SirketEkleSoapOut">
+    <wsdl:part name="parameters" element="tns:SirketEkleResponse" />
+  </wsdl:message>
+  <wsdl:message name="sirketloginSoapIn">
+    <wsdl:part name="parameters" element="tns:sirketlogin" />
+  </wsdl:message>
+  <wsdl:message name="sirketloginSoapOut">
+    <wsdl:part name="parameters" element="tns:sirketloginResponse" />
+  </wsdl:message>
+  <wsdl:message name="sirketDeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:sirketDelete" />
+  </wsdl:message>
+  <wsdl:message name="sirketDeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:sirketDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="sirketGetAllSoapIn">
+    <wsdl:part name="parameters" element="tns:sirketGetAll" />
+  </wsdl:message>
+  <wsdl:message name="sirketGetAllSoapOut">
+    <wsdl:part name="parameters" element="tns:sirketGetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="sirketGetByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:sirketGetById" />
+  </wsdl:message>
+  <wsdl:message name="sirketGetByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:sirketGetByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="sirketUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:sirketUpdate" />
+  </wsdl:message>
+  <wsdl:message name="sirketUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:sirketUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="sirketIdAracGetirSoapIn">
+    <wsdl:part name="parameters" element="tns:sirketIdAracGetir" />
+  </wsdl:message>
+  <wsdl:message name="sirketIdAracGetirSoapOut">
+    <wsdl:part name="parameters" element="tns:sirketIdAracGetirResponse" />
+  </wsdl:message>
+  <wsdl:message name="AracEkleSoapIn">
+    <wsdl:part name="parameters" element="tns:AracEkle" />
+  </wsdl:message>
+  <wsdl:message name="AracEkleSoapOut">
+    <wsdl:part name="parameters" element="tns:AracEkleResponse" />
+  </wsdl:message>
+  <wsdl:message name="AracDeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:AracDelete" />
+  </wsdl:message>
+  <wsdl:message name="AracDeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:AracDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="aracGetAllSoapIn">
+    <wsdl:part name="parameters" element="tns:aracGetAll" />
+  </wsdl:message>
+  <wsdl:message name="aracGetAllSoapOut">
+    <wsdl:part name="parameters" element="tns:aracGetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="aracGetByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:aracGetById" />
+  </wsdl:message>
+  <wsdl:message name="aracGetByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:aracGetByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="aracUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:aracUpdate" />
+  </wsdl:message>
+  <wsdl:message name="aracUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:aracUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="KiralamaEkleSoapIn">
+    <wsdl:part name="parameters" element="tns:KiralamaEkle" />
+  </wsdl:message>
+  <wsdl:message name="KiralamaEkleSoapOut">
+    <wsdl:part name="parameters" element="tns:KiralamaEkleResponse" />
+  </wsdl:message>
+  <wsdl:message name="kiralamaDeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:kiralamaDelete" />
+  </wsdl:message>
+  <wsdl:message name="kiralamaDeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:kiralamaDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="kiralamaGetAllSoapIn">
+    <wsdl:part name="parameters" element="tns:kiralamaGetAll" />
+  </wsdl:message>
+  <wsdl:message name="kiralamaGetAllSoapOut">
+    <wsdl:part name="parameters" element="tns:kiralamaGetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="kiralamaGetByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:kiralamaGetById" />
+  </wsdl:message>
+  <wsdl:message name="kiralamaGetByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:kiralamaGetByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="kiralamaUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:kiralamaUpdate" />
+  </wsdl:message>
+  <wsdl:message name="kiralamaUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:kiralamaUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="puanEkleSoapIn">
+    <wsdl:part name="parameters" element="tns:puanEkle" />
+  </wsdl:message>
+  <wsdl:message name="puanEkleSoapOut">
+    <wsdl:part name="parameters" element="tns:puanEkleResponse" />
+  </wsdl:message>
+  <wsdl:message name="puanDeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:puanDelete" />
+  </wsdl:message>
+  <wsdl:message name="puanDeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:puanDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="puanGetAllSoapIn">
+    <wsdl:part name="parameters" element="tns:puanGetAll" />
+  </wsdl:message>
+  <wsdl:message name="puanGetAllSoapOut">
+    <wsdl:part name="parameters" element="tns:puanGetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="puanGetByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:puanGetById" />
+  </wsdl:message>
+  <wsdl:message name="puanGetByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:puanGetByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="puanUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:puanUpdate" />
+  </wsdl:message>
+  <wsdl:message name="puanUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:puanUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="talepEkleSoapIn">
+    <wsdl:part name="parameters" element="tns:talepEkle" />
+  </wsdl:message>
+  <wsdl:message name="talepEkleSoapOut">
+    <wsdl:part name="parameters" element="tns:talepEkleResponse" />
+  </wsdl:message>
+  <wsdl:message name="talepDeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:talepDelete" />
+  </wsdl:message>
+  <wsdl:message name="talepDeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:talepDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="talepGetAllSoapIn">
+    <wsdl:part name="parameters" element="tns:talepGetAll" />
+  </wsdl:message>
+  <wsdl:message name="talepGetAllSoapOut">
+    <wsdl:part name="parameters" element="tns:talepGetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="talepGetByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:talepGetById" />
+  </wsdl:message>
+  <wsdl:message name="talepGetByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:talepGetByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="talepUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:talepUpdate" />
+  </wsdl:message>
+  <wsdl:message name="talepUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:talepUpdateResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AracKiralamaServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MusteriEkle">
+      <wsdl:input message="tns:MusteriEkleSoapIn" />
+      <wsdl:output message="tns:MusteriEkleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="musteriLogin">
+      <wsdl:input message="tns:musteriLoginSoapIn" />
+      <wsdl:output message="tns:musteriLoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="musteriDelete">
+      <wsdl:input message="tns:musteriDeleteSoapIn" />
+      <wsdl:output message="tns:musteriDeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="musteriGetAll">
+      <wsdl:input message="tns:musteriGetAllSoapIn" />
+      <wsdl:output message="tns:musteriGetAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="musteriGetById">
+      <wsdl:input message="tns:musteriGetByIdSoapIn" />
+      <wsdl:output message="tns:musteriGetByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="musteriUpdate">
+      <wsdl:input message="tns:musteriUpdateSoapIn" />
+      <wsdl:output message="tns:musteriUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SirketEkle">
+      <wsdl:input message="tns:SirketEkleSoapIn" />
+      <wsdl:output message="tns:SirketEkleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sirketlogin">
+      <wsdl:input message="tns:sirketloginSoapIn" />
+      <wsdl:output message="tns:sirketloginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sirketDelete">
+      <wsdl:input message="tns:sirketDeleteSoapIn" />
+      <wsdl:output message="tns:sirketDeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sirketGetAll">
+      <wsdl:input message="tns:sirketGetAllSoapIn" />
+      <wsdl:output message="tns:sirketGetAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sirketGetById">
+      <wsdl:input message="tns:sirketGetByIdSoapIn" />
+      <wsdl:output message="tns:sirketGetByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sirketUpdate">
+      <wsdl:input message="tns:sirketUpdateSoapIn" />
+      <wsdl:output message="tns:sirketUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sirketIdAracGetir">
+      <wsdl:input message="tns:sirketIdAracGetirSoapIn" />
+      <wsdl:output message="tns:sirketIdAracGetirSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AracEkle">
+      <wsdl:input message="tns:AracEkleSoapIn" />
+      <wsdl:output message="tns:AracEkleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AracDelete">
+      <wsdl:input message="tns:AracDeleteSoapIn" />
+      <wsdl:output message="tns:AracDeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="aracGetAll">
+      <wsdl:input message="tns:aracGetAllSoapIn" />
+      <wsdl:output message="tns:aracGetAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="aracGetById">
+      <wsdl:input message="tns:aracGetByIdSoapIn" />
+      <wsdl:output message="tns:aracGetByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="aracUpdate">
+      <wsdl:input message="tns:aracUpdateSoapIn" />
+      <wsdl:output message="tns:aracUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="KiralamaEkle">
+      <wsdl:input message="tns:KiralamaEkleSoapIn" />
+      <wsdl:output message="tns:KiralamaEkleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="kiralamaDelete">
+      <wsdl:input message="tns:kiralamaDeleteSoapIn" />
+      <wsdl:output message="tns:kiralamaDeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="kiralamaGetAll">
+      <wsdl:input message="tns:kiralamaGetAllSoapIn" />
+      <wsdl:output message="tns:kiralamaGetAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="kiralamaGetById">
+      <wsdl:input message="tns:kiralamaGetByIdSoapIn" />
+      <wsdl:output message="tns:kiralamaGetByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="kiralamaUpdate">
+      <wsdl:input message="tns:kiralamaUpdateSoapIn" />
+      <wsdl:output message="tns:kiralamaUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="puanEkle">
+      <wsdl:input message="tns:puanEkleSoapIn" />
+      <wsdl:output message="tns:puanEkleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="puanDelete">
+      <wsdl:input message="tns:puanDeleteSoapIn" />
+      <wsdl:output message="tns:puanDeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="puanGetAll">
+      <wsdl:input message="tns:puanGetAllSoapIn" />
+      <wsdl:output message="tns:puanGetAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="puanGetById">
+      <wsdl:input message="tns:puanGetByIdSoapIn" />
+      <wsdl:output message="tns:puanGetByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="puanUpdate">
+      <wsdl:input message="tns:puanUpdateSoapIn" />
+      <wsdl:output message="tns:puanUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="talepEkle">
+      <wsdl:input message="tns:talepEkleSoapIn" />
+      <wsdl:output message="tns:talepEkleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="talepDelete">
+      <wsdl:input message="tns:talepDeleteSoapIn" />
+      <wsdl:output message="tns:talepDeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="talepGetAll">
+      <wsdl:input message="tns:talepGetAllSoapIn" />
+      <wsdl:output message="tns:talepGetAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="talepGetById">
+      <wsdl:input message="tns:talepGetByIdSoapIn" />
+      <wsdl:output message="tns:talepGetByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="talepUpdate">
+      <wsdl:input message="tns:talepUpdateSoapIn" />
+      <wsdl:output message="tns:talepUpdateSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AracKiralamaServiceSoap" type="tns:AracKiralamaServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MusteriEkle">
+      <soap:operation soapAction="http://tempuri.org/MusteriEkle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="musteriLogin">
+      <soap:operation soapAction="http://tempuri.org/musteriLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="musteriDelete">
+      <soap:operation soapAction="http://tempuri.org/musteriDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="musteriGetAll">
+      <soap:operation soapAction="http://tempuri.org/musteriGetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="musteriGetById">
+      <soap:operation soapAction="http://tempuri.org/musteriGetById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="musteriUpdate">
+      <soap:operation soapAction="http://tempuri.org/musteriUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SirketEkle">
+      <soap:operation soapAction="http://tempuri.org/SirketEkle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sirketlogin">
+      <soap:operation soapAction="http://tempuri.org/sirketlogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sirketDelete">
+      <soap:operation soapAction="http://tempuri.org/sirketDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sirketGetAll">
+      <soap:operation soapAction="http://tempuri.org/sirketGetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sirketGetById">
+      <soap:operation soapAction="http://tempuri.org/sirketGetById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sirketUpdate">
+      <soap:operation soapAction="http://tempuri.org/sirketUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sirketIdAracGetir">
+      <soap:operation soapAction="http://tempuri.org/sirketIdAracGetir" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AracEkle">
+      <soap:operation soapAction="http://tempuri.org/AracEkle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AracDelete">
+      <soap:operation soapAction="http://tempuri.org/AracDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="aracGetAll">
+      <soap:operation soapAction="http://tempuri.org/aracGetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="aracGetById">
+      <soap:operation soapAction="http://tempuri.org/aracGetById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="aracUpdate">
+      <soap:operation soapAction="http://tempuri.org/aracUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KiralamaEkle">
+      <soap:operation soapAction="http://tempuri.org/KiralamaEkle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kiralamaDelete">
+      <soap:operation soapAction="http://tempuri.org/kiralamaDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kiralamaGetAll">
+      <soap:operation soapAction="http://tempuri.org/kiralamaGetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kiralamaGetById">
+      <soap:operation soapAction="http://tempuri.org/kiralamaGetById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kiralamaUpdate">
+      <soap:operation soapAction="http://tempuri.org/kiralamaUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="puanEkle">
+      <soap:operation soapAction="http://tempuri.org/puanEkle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="puanDelete">
+      <soap:operation soapAction="http://tempuri.org/puanDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="puanGetAll">
+      <soap:operation soapAction="http://tempuri.org/puanGetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="puanGetById">
+      <soap:operation soapAction="http://tempuri.org/puanGetById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="puanUpdate">
+      <soap:operation soapAction="http://tempuri.org/puanUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="talepEkle">
+      <soap:operation soapAction="http://tempuri.org/talepEkle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="talepDelete">
+      <soap:operation soapAction="http://tempuri.org/talepDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="talepGetAll">
+      <soap:operation soapAction="http://tempuri.org/talepGetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="talepGetById">
+      <soap:operation soapAction="http://tempuri.org/talepGetById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="talepUpdate">
+      <soap:operation soapAction="http://tempuri.org/talepUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AracKiralamaServiceSoap12" type="tns:AracKiralamaServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MusteriEkle">
+      <soap12:operation soapAction="http://tempuri.org/MusteriEkle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="musteriLogin">
+      <soap12:operation soapAction="http://tempuri.org/musteriLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="musteriDelete">
+      <soap12:operation soapAction="http://tempuri.org/musteriDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="musteriGetAll">
+      <soap12:operation soapAction="http://tempuri.org/musteriGetAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="musteriGetById">
+      <soap12:operation soapAction="http://tempuri.org/musteriGetById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="musteriUpdate">
+      <soap12:operation soapAction="http://tempuri.org/musteriUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SirketEkle">
+      <soap12:operation soapAction="http://tempuri.org/SirketEkle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sirketlogin">
+      <soap12:operation soapAction="http://tempuri.org/sirketlogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sirketDelete">
+      <soap12:operation soapAction="http://tempuri.org/sirketDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sirketGetAll">
+      <soap12:operation soapAction="http://tempuri.org/sirketGetAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sirketGetById">
+      <soap12:operation soapAction="http://tempuri.org/sirketGetById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sirketUpdate">
+      <soap12:operation soapAction="http://tempuri.org/sirketUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sirketIdAracGetir">
+      <soap12:operation soapAction="http://tempuri.org/sirketIdAracGetir" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AracEkle">
+      <soap12:operation soapAction="http://tempuri.org/AracEkle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AracDelete">
+      <soap12:operation soapAction="http://tempuri.org/AracDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="aracGetAll">
+      <soap12:operation soapAction="http://tempuri.org/aracGetAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="aracGetById">
+      <soap12:operation soapAction="http://tempuri.org/aracGetById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="aracUpdate">
+      <soap12:operation soapAction="http://tempuri.org/aracUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KiralamaEkle">
+      <soap12:operation soapAction="http://tempuri.org/KiralamaEkle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kiralamaDelete">
+      <soap12:operation soapAction="http://tempuri.org/kiralamaDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kiralamaGetAll">
+      <soap12:operation soapAction="http://tempuri.org/kiralamaGetAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kiralamaGetById">
+      <soap12:operation soapAction="http://tempuri.org/kiralamaGetById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kiralamaUpdate">
+      <soap12:operation soapAction="http://tempuri.org/kiralamaUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="puanEkle">
+      <soap12:operation soapAction="http://tempuri.org/puanEkle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="puanDelete">
+      <soap12:operation soapAction="http://tempuri.org/puanDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="puanGetAll">
+      <soap12:operation soapAction="http://tempuri.org/puanGetAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="puanGetById">
+      <soap12:operation soapAction="http://tempuri.org/puanGetById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="puanUpdate">
+      <soap12:operation soapAction="http://tempuri.org/puanUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="talepEkle">
+      <soap12:operation soapAction="http://tempuri.org/talepEkle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="talepDelete">
+      <soap12:operation soapAction="http://tempuri.org/talepDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="talepGetAll">
+      <soap12:operation soapAction="http://tempuri.org/talepGetAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="talepGetById">
+      <soap12:operation soapAction="http://tempuri.org/talepGetById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="talepUpdate">
+      <soap12:operation soapAction="http://tempuri.org/talepUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AracKiralamaService">
+    <wsdl:port name="AracKiralamaServiceSoap" binding="tns:AracKiralamaServiceSoap">
+      <soap:address location="https://arackiralamasoap.azurewebsites.net/AracKiralamaService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AracKiralamaServiceSoap12" binding="tns:AracKiralamaServiceSoap12">
+      <soap12:address location="https://arackiralamasoap.azurewebsites.net/AracKiralamaService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

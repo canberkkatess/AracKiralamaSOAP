@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="51fe6eca6d6b434c9a8cd4735003fb37" Name="Diagram1" ZoomLevel="106">
+        <EntityTypeShape EntityType="SOAModel.tblArac" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOAModel.tblKiralama" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOAModel.tblMüsteri" Width="1.5" PointX="2.875" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOAModel.tblPuan" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOAModel.tblSirket" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOAModel.tblTalep" Width="1.5" PointX="8.25" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="SOAModel.FK_tblArac_tblArac" ManuallyRouted="false" />
+        <AssociationConnector Association="SOAModel.FK_tblKiralama_tblArac" ManuallyRouted="false" />
+        <AssociationConnector Association="SOAModel.FK_tblTalep_tblArac" ManuallyRouted="false" />
+        <AssociationConnector Association="SOAModel.FK_tblKiralama_tblMüsteri" ManuallyRouted="false" />
+        <AssociationConnector Association="SOAModel.FK_tblTalep_tblMüsteri" ManuallyRouted="false" />
+        <AssociationConnector Association="SOAModel.FK_tblKiralama_tblSirket" />
+        <AssociationConnector Association="SOAModel.FK_tblTalep_tblSirket" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

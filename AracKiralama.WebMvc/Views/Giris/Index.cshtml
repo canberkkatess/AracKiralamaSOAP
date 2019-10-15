@@ -1,0 +1,142 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+<head>
+    <title>Araç Kirala</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+   
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                    <p class="text-muted">Araç Kiralama Falan Filanı</p>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <hr>
+                        </div>
+                        <div class="col-md-2">HIZLICA BAĞLAN</div>
+                        <div class="col-md-5">
+                            <hr>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-12 mt-2">
+                        <form action="Giris/kayitOl" method="post">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"></label>
+                                <input required type="text" class="form-control" placeholder="Kullanıcı Adı" aria-describedby="basic-addon1" name="userName">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1"></label>
+                                <input required type="password" class="form-control" placeholder="Şifre" aria-describedby="basic-addon1" name="sifre">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"></label>
+                                <input type="email" class="form-control" placeholder="E-Mail" aria-describedby="basic-addon1" name="mail" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"></label>
+                                <input type="text" class="form-control" placeholder="Şehir" aria-describedby="basic-addon1" name="sehir" required>
+                            </div>
+
+                            <input type="submit" value="Kayıt Ol" class="btn btn-outline-primary btn-block">
+                        </form>
+                    </div>
+
+
+                    <form action="/Giris/giris" method="post">
+                        <div class="row">
+
+                            <div class="col-md-12 mt-2">
+
+                                <div class="form-group mt-2">
+                                    <label for="exampleInputEmail1"></label>
+                                    <input type="text" class="form-control" placeholder="Kullanıcı Adını Giriniz" name="kullaniciAdi" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1"></label>
+                                    <input type="password" class="form-control" placeholder="Şifre" name="sifre" required>
+                                </div>
+                                <input type="submit" value="Giriş Yap" class="btn btn-outline-primary btn-block">
+
+                            </div>
+
+                        </div>
+                    </form>
+
+
+                    <div class="col-md-12 mt-2">
+                        <form action="Giris/kurumsalKayitOl" method="post">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"></label>
+                                <input required type="text" class="form-control" placeholder="Şirket Adı" aria-describedby="basic-addon1" name="sirketAdi">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1"></label>
+                                <input required type="password" class="form-control" placeholder="Şifre" aria-describedby="basic-addon1" name="sifre">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"></label>
+                                <input type="email" class="form-control" placeholder="E-Mail" aria-describedby="basic-addon1" name="mail" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"></label>
+                                <input type="text" class="form-control" placeholder="Şehir" aria-describedby="basic-addon1" name="sehir" required>
+                            </div>
+
+                            <input type="submit" value="Kayıt Ol" class="btn btn-outline-primary btn-block">
+                        </form>
+                    </div>
+
+                    <form action="/Giris/kurumsalGiris" method="post">
+                        <div class="row">
+
+                            <div class="col-md-12 mt-2">
+
+                                <div class="form-group mt-2">
+                                    <label for="exampleInputEmail1"></label>
+                                    <input type="text" class="form-control" placeholder="Şirket Adını Giriniz" name="sirketAdi" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1"></label>
+                                    <input type="password" class="form-control" placeholder="Şifre" name="sifre" required>
+                                </div>
+                                <input type="submit" value="Giriş Yap" class="btn btn-outline-primary btn-block">
+
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+
+                </div>
+            </div>
+        
+    </section>
+
+    <script src="~/Content/js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="~/Content/js/bootstrap.js"></script>
+</body>
+
+</html>
+
